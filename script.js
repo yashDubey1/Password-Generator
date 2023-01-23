@@ -96,6 +96,24 @@ function enableRow2(){
 }
 
 
+function openMenu(){
+    let opt = document.getElementById("options");
+    let ham = document.getElementById("ham");
+    let cross = document.getElementById("cross");
+    opt.style.left = 0;
+    ham.style.display="none";
+    cross.style.display = "block";
+}
+
+function closeMenu(){
+    let opt = document.getElementById("options");
+    let ham = document.getElementById("ham");
+    let cross = document.getElementById("cross");
+    opt.style.left = "-1100";
+    cross.style.display="none";
+    ham.style.display = "block";
+}
+
 //function to enable certain ui widgets when radio buttons are clicked
 function enableRow3(){
     
@@ -147,5 +165,6 @@ function generateMultiple(){
     }
         passDisplay.value = pass.join("\n");
 }
+    closeMenu();
 }
 
