@@ -50,7 +50,7 @@ padding: 0;
 
 .generatorMachine{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     display: flex;
@@ -69,14 +69,17 @@ padding: 0;
     font-weight: bolder;
     overflow-x: scroll;
     text-overflow:clip;
-    overflow-y: auto;
+    overflow-y: scroll;
     color: var(--dark);
     resize: none;
 }
 
 .options{
+    z-index: 1000;
+    position: relative;
     display: grid;
     grid-template-columns: 20vw 14vw 20vw;
+    top: 25%;
     gap: 30px 30px;
 }
 
@@ -214,51 +217,134 @@ font-weight: bolder;
     border: none;
 }
 
-@media screen and (max-width:1400px){
+@media only screen and (max-width:1400px){
     #main{
-        overflow-y: scroll;
-    }
-    
-    .options{
-        /* display: grid; */
-        grid-template-columns: repeat(1,1fr);
-        gap: 30px 30px;
-    }
-
-    .row3 .multiple{
-        justify-content: flex-start;
-        gap: 25px;
-    }
-
-    .row3 .include{
-        justify-content: flex-start;
-        gap: 25px;
-    }
-
-    .logo{
         display: flex;
-        width: 100%;
+        justify-content: center;
+      }
+      
+      .logo{
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
-    }
-
-    .generatorMachine{
-        position: absolute;
-        top: 72%;
-    }
-
-    .generatorMachine h1{
-        display: none;
-    }
-
-    .options{
         margin-top: 50px;
-    }
-}
+      }
+      
+      .logo h1 a{
+        text-decoration: none;
+        font-size: 2rem;
+        color: var(--crimson);
+      }
+      
+      .generatorMachine{
+        position: absolute;
+        top: 50%;
+        left:50%;
+        width: 80vw;
+        transform: translate(-50%,-50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      
+      .generatorMachine h1{
+        font-size: 1.5rem;
+      }
+      
+      #displayPass{
+        height: 200px;
+        width: 100%;
+        margin: 30px;
+      }
+      
+      .options::before{
+      content: "Options:";
+      display: flex;
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: bolder;
+      }
+      
+      .options{
+        background-color: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw; 
+        display: grid;
+        grid-template-columns: auto;
+      }
+      
+      .row1, .row2, .row3{
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 20px;
+      }
+      
+      .row1{
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .row1 h1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+      
+      .row1 .slider input[type="text"]{
+        width: 100px;
+        margin: 20px;
+      }
+      
+      .row1 label{
+        padding: 10px 20px;
+      }
+      
+      .row1 .slider span{
+        margin: 5px;
+      }
+      
+      .row2 div{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin: 5px;
+      }
+      
+      .row3 div{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 5px;
+      }
 
-@media screen and (max-width:600px){
-    .generatorMachine{
-        top: 70%;
-    }
+      .row3 .multiple{
+        justify-content: flex-start;
+        gap: 30px;
+      }
+
+      .row3 .include{
+        justify-content: flex-start;
+        gap: 30px;
+      }
+      
+      .options button{
+        background-color: var(--crimson);
+        height: 30px;
+        margin-top: 25px;
+        font-size: 1rem;
+        color: white;
+        border: none;
+        transition: .3s;
+      }
+      
+      .options button:hover{
+        background-color: var(--dark);
+        color: var(--crimson);
+      }
 }
