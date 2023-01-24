@@ -1,24 +1,9 @@
-let defRadio = document.getElementById("def");
-let custRadio = document.getElementById("cust");
-let symCheck = document.getElementById("sym");
-let numCheck = document.getElementById("num");
-let defCheck = document.getElementById("cap");
-let sliderValue = document.getElementById("charSlider");
-let sliderField = document.getElementById("sliderVal");
-let sBtn = document.getElementById("singleBtn");
-let mBtn = document.getElementById("multipleBtn");
-let num = document.getElementById("numberentry");
-let cb = document.getElementById("cb");
-let incl = document.getElementById("includefield");
-let passDisplay = document.getElementById("displayPass");
-
+let clickCounter = 0;
 
 // function to generate random password
 function randomPass(){
     let sliderField = document.getElementById("sliderVal");
-    let passDisplay = document.getElementById("displayPass");
     let defRadio = document.getElementById("def");
-    let custRadio = document.getElementById("cust");
     let symCheck = document.getElementById("sym");
     let numCheck = document.getElementById("num");
     let capCheck = document.getElementById("cap");
@@ -109,7 +94,7 @@ function closeMenu(){
     let opt = document.getElementById("options");
     let ham = document.getElementById("ham");
     let cross = document.getElementById("cross");
-    opt.style.left = "-1100";
+    opt.style.left = "-11100";
     cross.style.display="none";
     ham.style.display = "block";
 }
@@ -117,25 +102,19 @@ function closeMenu(){
 //function to enable certain ui widgets when radio buttons are clicked
 function enableRow3(){
     
-    let sBtn = document.getElementById("singleBtn");
-    let mBtn = document.getElementById("multipleBtn");
-    let num = document.getElementById("numberentry");
-    let cb = document.getElementById("cb");
-    let incl = document.getElementById("includefield");
-    
-    if(mBtn.checked){
-        num.disabled=false;
-        num.value = 4;
-    }
-    else if(sBtn.checked){
-        num.disabled=true;
-    }
+    let singleCB = document.getElementById("singleBtn");
+    let multipleCB = document.getElementById("multipleBtn");
+    let urlBtn = document.getElementById("urlAddBtn");
+    let numEntry = document.getElementById("numberentry");
+    let tf = document.getElementById("displayPass");
 
-    if(cb.checked){
-        incl.disabled = false;
+    if(singleCB.checked && clickCounter==0){
+        numEntry.disabled = true;
+        urlBtn.disabled=false;
     }
-    else{
-        incl.disabled = true;
+    else if(multipleCB.checked){
+        numEntry.disabled = false;
+        urlBtn.disabled = true;
     }
 }
 
@@ -144,7 +123,6 @@ function generateMultiple(){
     let mBtn = document.getElementById("multipleBtn");
     let num = document.getElementById("numberentry");
     let passDisplay = document.getElementById("displayPass");
-
     let pass = [];
     range = parseInt(num.value);
     let access = true;
@@ -154,17 +132,48 @@ function generateMultiple(){
     }
     else{
     let i=1;
-    if(mBtn.checked && access==true)
+    if(mBtn.checked && access==true){
         while(i<=range){
             console.log(i);
             pass.push(i+". "+randomPass());
             i++;
         }
-    else{
-        pass.push(randomPass());
-    }
-        passDisplay.value = pass.join("\n");
-}
-    closeMenu();
+        alert("password generated!");
+        }
+        else{
+            pass.push(randomPass());            
+            alert("password generated!");
+        }
+    } 
+    console.log(pass);
+    passDisplay.value = pass.join("\n");
+    clickCounter++;
+    return clickCounter;     
 }
 
+function saveAsText(){
+    var textarea = document.getElementById("displayPass");
+    var text = textarea.value;
+    var blob = new Blob([text], {type: "text/plain"});
+    saveAs(blob, "passwords.txt");
+}
+
+function clearAll(){
+    var textarea = document.getElementById("displayPass");
+    textarea.value = "";
+    clickCounter=0;
+}
+
+function addUrl(){
+    let check = clickCounter;
+    document.getElementById("addUrlBtn");
+    let tf = document.getElementById("displayPass");
+    if(check>0){
+    let prm = prompt("Enter a url for the password: "+tf.value);
+    let urlValue = prm;
+    tf.value = "URL: "+urlValue+" Password: "+tf.value;
+    clickCounter=0;
+}else{
+    alert("Generate new a password first!");
+}
+    }
