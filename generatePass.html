@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="secureit/S.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="passGen.css">
     <meta charset="UTF-8">
@@ -16,19 +17,22 @@
         <h3>Password generator</h3>
         </div>
         <div id="ham">
-            <a  onclick="openMenu()">&#9776;</a>
+            <a onclick="openMenu()">&#9776;</a>
         </div>
         <div id="cross">
-            <a  onclick="closeMenu()">&#9746;</a>
+            <a onclick="closeMenu()">&#9746;</a>
         </div>
     </nav>
 
     <div class="generatorMachine">
         <h1>Your Password will be shown here..</h1>
-        <textarea wrap="off" name="" id="displayPass" placeholder="Your Passwords Appear Here!"></textarea>
-        <!-- <input type="text" name="passwordField" id="displayPass"> -->
-
-</div>
+        <textarea readonly wrap="off" name="" id="displayPass" placeholder="Your Passwords Appear Here!">
+        </textarea>
+        <div class="btns">
+        <button onclick="saveAsText()">Save Text File</button>
+        <button onclick="clearAll()">Clear Box</button>
+        </div>
+    </div>
         <div id="options">
         <div class="row1">
             <h1>Number of characters</h1>
@@ -48,14 +52,14 @@
         </div>
 
         <div class="row3">
-            <div class="single"><input type="radio" name="type" checked id="singleBtn" onchange="enableRow3()"><span>Single</span></div>
+            <div class="single" ><input type="radio" name="type" checked id="singleBtn" onchange="enableRow3()"><span>Single</span>
+            <button id="urlAddBtn" onclick="addUrl()">Add a Url</button>
+            </div>
             <div class="multiple">
             <input type="radio" name="type" id="multipleBtn" onchange="enableRow3()"><span>Multiple</span>
             <input type="Number" name="" id="numberentry" min=1 max=100 disabled=true>
             </div>
             <div class="include">
-            <input type="checkbox" name="" id="cb" onchange="enableRow3()"><span>Include</span>
-            <input type="text" name="" id="includefield" disabled=true>
         </div>
             <button onclick="generateMultiple()">Generate Password</button>
         </div>
