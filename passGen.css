@@ -47,6 +47,19 @@ padding: 0;
     right: 50px;
     display: none;
     z-index: 1000;
+    transition: .5s ease-out;
+
+}
+
+#ham a:hover::after{
+  content: "Options";
+  background-color: var(--crimson);
+  color: white;
+  font-size: 12px;
+  font-weight: bolder;
+  position: absolute;
+  right: 50%;
+  padding: 5px;
 }
 
 #ham a{
@@ -61,12 +74,24 @@ padding: 0;
     right: 50px;
     display: none;
     z-index: 1000;
+    transition: .5s ease-out;
 }
 
 #cross a{
     font-size: 2rem;
     text-decoration: none;
     color: white;
+}
+
+#cross a:hover::after{
+  content: "Close";
+  background-color: var(--crimson);
+  color: white;
+  font-size: 12px;
+  font-weight: bolder;
+  position: absolute;
+  right: 50%;
+  padding: 5px;
 }
 
 .logo h1 a{
@@ -102,12 +127,30 @@ padding: 0;
     resize: none;
 }
 
+.btns{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 5px;
+}
+
+.btns button{
+    height: 40px;
+    background-color: var(--crimson);
+    font-size: 1rem;
+    width: 100%;
+    font-weight: bolder;
+    color: white;
+    margin: 10px 0px;
+    border: none;
+  }
+
 #options{
     z-index: 100;
     position: relative;
     display: grid;
     grid-template-columns: 20vw 14vw 20vw;
-    top: 25%;
+    top: 30%;
     gap: 30px 30px;
 }
 
@@ -156,11 +199,11 @@ padding: 0;
 }
 
 .row2 div{
-display: flex;
-align-items: center;
-margin-bottom: 10px;
-font-size: 1.3rem;
-font-weight: bolder;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-weight: bolder;
 }
 
 .row2 div input{
@@ -181,15 +224,56 @@ font-weight: bolder;
 
 .row3 .single{
     display: flex;
+    align-items:center;
     font-size: 1.3rem;
-    justify-content: flex-start;
-    gap: 25px;
     font-weight: bolder;
+    gap: 35px;
 }
 
 .single input{
     height: 20px;
     width: 20px;
+}
+
+.single button{
+   max-width: 150px;
+    height: 20px;
+    background-color: var(--crimson);
+    color: white;
+    font-family: montserrat;
+    position: relative;
+}
+
+.single #urlAddBtn:disabled{
+    background-color: var(--dark);
+    color: grey;
+}
+
+#urlAddBtn:hover{
+font-weight: lighter;
+color: var(--dark);
+}
+
+#urlAddBtn:hover::after{
+  content: "Add a website for the password generated";
+  position: absolute;
+  top: -30;
+  font-size: 12px;
+  width: 100%;
+  left: 50%;
+  background-color: var(--crimson);
+  color: white;
+}
+
+#urlAddBtn:disabled:hover::after{
+  content: "Tap on clear Box to continue";
+  position: absolute;
+  top: -30;
+  font-size: 12px;
+  width: 100%;
+  left: 50%;
+  background-color: var(--crimson);
+  color: white;
 }
 
 .row3 .multiple{
@@ -214,26 +298,6 @@ font-weight: bolder;
 }
 
 
-.row3 .include{
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    font-size: 1.3rem;
-    align-items: center;
-    font-weight: bolder;
-}
-
-.include input[type="checkbox"]{
-    height: 20px;
-    width: 20px;
-}
-
-.include input[type="text"]{
-    height: 30px;
-    width: 150px;
-    font-weight: bolder;
-    color: var(--dark);
-}
 .row3 button{
     margin-top: 5px;
     height: 40px;
@@ -254,20 +318,23 @@ font-weight: bolder;
       .logo{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         margin-top: 10px;
-        
       }
       
       #ham{
         display: block;
+        
       }
 
       .logo h1 a{
         text-decoration: none;
-        font-size: 2rem;
+        font-size: 1.2rem;
         color: var(--crimson);
+      }
+      .logo h3{
+        font-size: 1rem;
       }
       
       .generatorMachine{
@@ -283,15 +350,18 @@ font-weight: bolder;
       }
       
       .generatorMachine h1{
-        font-size: 1.5rem;
+        font-size: 1rem;
+        margin-bottom: 0px;
       }
       
-      #displayPass{
+      .generatorMachine #displayPass{
         height: 200px;
         width: 100%;
         margin: 30px;
+        font-size: 1rem;
       }
       
+
       #options::before{
       content: "Options:";
       display: flex;
@@ -304,7 +374,7 @@ font-weight: bolder;
         background-color: black;
         position: absolute;
         top: 0;
-        left: -1100;
+        left: -11100;
         width: 100vw; 
         display: grid;
         grid-template-columns: auto;
@@ -350,35 +420,29 @@ font-weight: bolder;
         margin: 5px;
       }
       
-      .row3 div{
+      .row3 .single{
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        margin: 5px;
+        gap: 15px;
+      }
+
+      .single button{
+        margin-left: 20px;
       }
 
       .row3 .multiple{
         justify-content: flex-start;
-        gap: 30px;
-      }
-
-      .row3 .include{
-        justify-content: flex-start;
-        gap: 30px;
+        gap: 15px;
       }
       
       #options button{
         background-color: var(--crimson);
         height: 30px;
-        margin-top: 25px;
         font-size: 1rem;
         color: white;
         border: none;
         transition: .3s;
       }
       
-      #options button:hover{
-        background-color: var(--dark);
-        color: var(--crimson);
-      }
 }
